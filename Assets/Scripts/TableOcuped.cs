@@ -5,6 +5,7 @@ using UnityEngine;
 public class TableOcuped : MonoBehaviour
 {
     public bool isOcuped;
+    public int i = 0;
 
     void Start()
     {
@@ -13,21 +14,30 @@ public class TableOcuped : MonoBehaviour
 
     void Update()
     {
-        
-    }
-
-    public void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
+        if (i==0)
+        {
+            isOcuped = false;
+        }
+        else
         {
             isOcuped = true;
         }
     }
+
+    public void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Customer"))
+        {
+            i++;
+        } 
+    }
+
     public void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Customer"))
         {
-            isOcuped = false;
+            i--;
         }
     }
+    
 }

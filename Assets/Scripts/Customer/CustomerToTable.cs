@@ -15,7 +15,7 @@ public class CustomerToTable : MonoBehaviour
 
     void Start()
     {
-        ocupedTables = new bool[5];
+        ocupedTables = new bool[10];
 
         s = true;
         checkNumberTable();
@@ -31,15 +31,30 @@ public class CustomerToTable : MonoBehaviour
             Vector2 direction = target.position - transform.position;
             transform.Translate(direction.normalized * speed * Time.deltaTime);
         }
+
         //stop move
         if (transform.position.x - target.position.x <= 0.01 && transform.position.y - target.position.y <= 0.01)
         {
             inTable = true;
         }
+    }
+
+    public void checkNumberTable()
+    {
+        tables[0] = GameObject.Find("Table0").GetComponent<Transform>();
+        tables[1] = GameObject.Find("Table1").GetComponent<Transform>();
+        tables[2] = GameObject.Find("Table2").GetComponent<Transform>();
+        tables[3] = GameObject.Find("Table3").GetComponent<Transform>();
+        tables[4] = GameObject.Find("Table4").GetComponent<Transform>();
+        tables[5] = GameObject.Find("Table5").GetComponent<Transform>();
+        tables[6] = GameObject.Find("Table6").GetComponent<Transform>();
+        tables[7] = GameObject.Find("Table7").GetComponent<Transform>();
+        tables[8] = GameObject.Find("Table8").GetComponent<Transform>();
+        tables[9] = GameObject.Find("Table9").GetComponent<Transform>();
 
 
         //set bool ocuped table
-        /*for (int i = 0; i >= 4; i++)
+        for (int i = 0; i <= 9; i++)
         {
             if (tables[i].GetComponent<TableOcuped>().isOcuped == true)
             {
@@ -49,71 +64,21 @@ public class CustomerToTable : MonoBehaviour
             {
                 ocupedTables[i] = false;
             }
-        }*/
-
-    }
-
-    public void checkNumberTable()
-    {
-        //set bool ocuped table
-        if (tables[0].GetComponent<TableOcuped>().isOcuped == true)
-        {
-            ocupedTables[0] = true;
-        }
-        else
-        {
-            ocupedTables[0] = false;
         }
 
-        if (tables[1].GetComponent<TableOcuped>().isOcuped == true)
-        {
-            ocupedTables[1] = true;
-        }
-        else
-        {
-            ocupedTables[1] = false;
-        }
-
-        if (tables[2].GetComponent<TableOcuped>().isOcuped == true)
-        {
-            ocupedTables[2] = true;
-        }
-        else
-        {
-            ocupedTables[2] = false;
-        }
-
-        if (tables[3].GetComponent<TableOcuped>().isOcuped == true)
-        {
-            ocupedTables[3] = true;
-        }
-        else
-        {
-            ocupedTables[3] = false;
-        }
-
-        if (tables[4].GetComponent<TableOcuped>().isOcuped == true)
-        {
-            ocupedTables[4] = true;
-        }
-        else
-        {
-            ocupedTables[4] = false;
-        }
 
         //select target
-        if (ocupedTables[0] == true && ocupedTables[1] == true && ocupedTables[2] == true && ocupedTables[3] == true && ocupedTables[4] == true)
+        if (ocupedTables[0] && ocupedTables[1] && ocupedTables[2] && ocupedTables[3] && ocupedTables[4] && ocupedTables[5] && ocupedTables[6] && ocupedTables[7] && ocupedTables[8] && ocupedTables[9])
         {
-            Debug.Log("todas ocupadas");
             s = false;
         }
         else
         {
             while (s == true)
             {
-                numberTable = UnityEngine.Random.Range(0, 5);
-                target = tables[numberTable];
+                numberTable = Random.Range(0, 10);
                 Debug.Log(numberTable);
+                target = tables[numberTable];
 
                 if (ocupedTables[numberTable] == false)
                 {
@@ -122,5 +87,4 @@ public class CustomerToTable : MonoBehaviour
             }
         }
     }
-
 }
