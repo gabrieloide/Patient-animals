@@ -8,6 +8,7 @@ public class SpawnCustomer : MonoBehaviour
     public bool allTablesOcuped;
 
     public GameObject[] customers;
+    public float timeToSpawn;
 
 
     private void Start()
@@ -38,7 +39,7 @@ public class SpawnCustomer : MonoBehaviour
     IEnumerator Asd()
     {
         Instantiate(customers[UnityEngine.Random.Range(0, 1)], new Vector2(0, 4), Quaternion.identity);
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(timeToSpawn);
         tableFree = true;
         
     }

@@ -10,14 +10,16 @@ public class PlayerController : MonoBehaviour
 
     public const string horizontal = "Horizontal";
     public const string vertical = "Vertical";
-    const string lastHorizontal = "LastHorizontal";
-    const string lastVertical = "LastVertical";
     const string walkingState = "IsMoving";
+    public List<GameObject> Orders;
+    public GameObject Meal;
+
     Animator animator;
     Rigidbody2D rigidBody2D;
-
+ 
     private void Start()
     {
+        List<GameObject> orders = new List<GameObject>();
         animator = GetComponent<Animator>();
         rigidBody2D = GetComponent<Rigidbody2D>();
     }
@@ -25,27 +27,25 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         walking = false;
-       //movimiento solo en 4 direcciones sin poder ir en diagonal
        if (Mathf.Abs(Input.GetAxisRaw(horizontal))> 0.5f || Mathf.Abs(Input.GetAxisRaw(vertical)) > 0.5f)
        {
-            rigidBody2D.velocity = (new Vector3(Input.GetAxisRaw(horizontal) * Time.deltaTime, Input.GetAxisRaw(vertical) * Time.deltaTime, 0).normalized * speed);
+            rigidBody2D.velocity = (new Vector3(Input.GetAxisRaw(horizontal) * Time.deltaTime, Input.GetAxisRaw(vertical) 
+                * Time.deltaTime, 0).normalized * speed);
             walking = true;
-
        }
         else if (!walking)
         {
             rigidBody2D.velocity = Vector2.zero;
         }
-        Debug.Log(horizontal);
-
         Vector3.Normalize(transform.position);
 
         animator.SetFloat(horizontal, Input.GetAxisRaw(horizontal));
         animator.SetFloat(vertical, Input.GetAxisRaw(vertical));
 
         animator.SetBool(walkingState, walking);
-
-        animator.SetFloat(lastHorizontal, lastMovement.x);
-        animator.SetFloat(lastVertical, lastMovement.y);
+        if (Input.GetKeyDown(KeyCode.J))
+        {
+            Orders.Add(Meal);  
+        }
     }
 }

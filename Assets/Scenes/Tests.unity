@@ -1117,8 +1117,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tableFree: 0
+  allTablesOcuped: 0
   customers:
   - {fileID: 16097585}
+  timeToSpawn: 5
 --- !u!4 &1341668107
 Transform:
   m_ObjectHideFlags: 0
