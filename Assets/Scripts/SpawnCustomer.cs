@@ -53,7 +53,7 @@ public class SpawnCustomer : MonoBehaviour
 
     IEnumerator Asd()
     {
-        Instantiate(customers[UnityEngine.Random.Range(0, 1)], new Vector2(0, 4), Quaternion.identity);
+        Instantiate(customers[UnityEngine.Random.Range(0, 3)], new Vector2(0, 4), Quaternion.identity);
         yield return new WaitForSeconds(timeToSpawn);
         tableFree = true;
         

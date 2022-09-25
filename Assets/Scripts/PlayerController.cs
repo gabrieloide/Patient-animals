@@ -6,26 +6,26 @@ public class PlayerController : MonoBehaviour
 {
     public float speed;
     bool walking = false;
-    public Vector2 lastMovement = Vector2.zero;
 
     public const string horizontal = "Horizontal";
     public const string vertical = "Vertical";
     const string walkingState = "IsMoving";
-    public List<GameObject> Orders;
-    public GameObject Meal;
 
     Animator animator;
     Rigidbody2D rigidBody2D;
- 
+    public int order;
+    public Queue Mealqueue = new Queue();
+
     private void Start()
     {
-        List<GameObject> orders = new List<GameObject>();
         animator = GetComponent<Animator>();
         rigidBody2D = GetComponent<Rigidbody2D>();
     }
 
     void Update()
     {
+
+
         walking = false;
        if (Mathf.Abs(Input.GetAxisRaw(horizontal))> 0.5f || Mathf.Abs(Input.GetAxisRaw(vertical)) > 0.5f)
        {
@@ -43,9 +43,12 @@ public class PlayerController : MonoBehaviour
         animator.SetFloat(vertical, Input.GetAxisRaw(vertical));
 
         animator.SetBool(walkingState, walking);
-        if (Input.GetKeyDown(KeyCode.J))
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Food"))
         {
-            Orders.Add(Meal);  
+            transform.parent = transform;
         }
     }
 }

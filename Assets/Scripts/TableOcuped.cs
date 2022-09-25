@@ -4,14 +4,8 @@ using UnityEngine;
 
 public class TableOcuped : MonoBehaviour
 {
-    public bool isOcuped;
+    public bool isOcuped = false;
     public int i = 0;
-
-    void Start()
-    {
-        isOcuped = false;
-    }
-
     void Update()
     {
         if (i==0)
