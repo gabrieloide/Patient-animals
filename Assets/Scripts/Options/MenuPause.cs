@@ -10,6 +10,7 @@ public class MenuPause : MonoBehaviour
     public GameObject panelPauseBackground;
     public GameObject textZeroTo;
     public bool IsPaused;
+    public bool inIntro;
 
     private void Start()
     {
@@ -18,14 +19,15 @@ public class MenuPause : MonoBehaviour
 
     private void Update()
     {
+        inIntro = gameObject.GetComponent<StartIntro>().intro;
         if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.P))
         {
-            if (IsPaused)
+            if (IsPaused && !inIntro)
             {
                 Resume();
                 textZeroTo.SetActive(true);
             }
-            else
+            else if(!IsPaused && !inIntro)
             {
                 Pause();
                 textZeroTo.SetActive(false);

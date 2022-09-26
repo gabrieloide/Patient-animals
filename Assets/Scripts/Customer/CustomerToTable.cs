@@ -19,6 +19,7 @@ public class CustomerToTable : MonoBehaviour
     public bool[] ocupedTables;
     public bool s;
     public int orderNumber;
+    public bool entregado = false;
 
     bool CanTrade;
     bool withdrawal;
@@ -49,6 +50,7 @@ public class CustomerToTable : MonoBehaviour
             if (customer == customerState.dog && FindObjectOfType<Withdrawal>().orderNumber == 0)
             {
                 Debug.Log("Comida de perro");
+                entregado = true;
             }
             else
             {
@@ -57,6 +59,7 @@ public class CustomerToTable : MonoBehaviour
             if (customer == customerState.cat && FindObjectOfType<Withdrawal>().orderNumber == 1)
             {
                 Debug.Log("Comida de gato");
+                entregado = true;
             }
             else
             {
@@ -65,6 +68,7 @@ public class CustomerToTable : MonoBehaviour
             if (customer == customerState.pig && FindObjectOfType<Withdrawal>().orderNumber == 2)
             {
                 Debug.Log("Comida de cerdo");
+                entregado = true;
             }
             else
             {
@@ -73,6 +77,7 @@ public class CustomerToTable : MonoBehaviour
             if (customer == customerState.monkey && FindObjectOfType<Withdrawal>().orderNumber == 3)
             {
                 Debug.Log("Comida de mono");
+                entregado = true;
             }
             else
             {

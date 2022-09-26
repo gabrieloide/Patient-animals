@@ -6,7 +6,13 @@ public class CustomerGoingOut : MonoBehaviour
 {
     public Transform target;
     public float speed;
-    public bool pajuera;
+    private bool pajuera;
+    private Animator animator;
+
+    private void Awake()
+    {
+        animator = GetComponent<Animator>();
+    }
 
     void Start()
     {
@@ -22,6 +28,10 @@ public class CustomerGoingOut : MonoBehaviour
         }
         //if (gameObject.GetComponent<CustomerToTable>().)
 
+        if (gameObject.GetComponent<CustomerToTable>().entregado)
+        {
+            pajuera = true;
+        }
         if (pajuera == true)
         {
             Vector2 direction = target.position - transform.position;

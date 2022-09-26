@@ -7,10 +7,6 @@ public class CustomerBotheting : MonoBehaviour
     public GameObject[] states;
     public float timeStatus;
     public bool si;
-    public int amountNumberUp1;
-    public float timeNumberUp1;
-    public int amountNumberUp2;
-    public float timeNumberUp2;
     public int k=1; //para descativar el anterior
     public bool j; //para script CustomerGoingOut
     IEnumerator myCoroutine;
@@ -30,9 +26,10 @@ public class CustomerBotheting : MonoBehaviour
             si = false;
         }
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (gameObject.GetComponent<CustomerToTable>().entregado)
         {
             StopCoroutine(myCoroutine);
+
         }
     }
 
@@ -45,14 +42,14 @@ public class CustomerBotheting : MonoBehaviour
             {
                 //StartCoroutine(GameObject.Find("zeroTo").GetComponent<GeneralBarDisgusting>().NumberUp(amountNumberUp1 ,timeNumberUp1));
                 //GameObject.Find("zeroTo").GetComponent<GeneralBarDisgusting>().StartC(amountNumberUp1, timeNumberUp1);
-                GameObject.Find("zeroTo").GetComponent<GeneralBarDisgusting>().run1(amountNumberUp1, timeNumberUp1);
+                GameObject.Find("zeroTo").GetComponent<GeneralBarDisgusting>().run1();
                 
             }
             if (i == 4)
             {
                 //StartCoroutine(GameObject.Find("zeroTo").GetComponent<GeneralBarDisgusting>().NumberUp(amountNumberUp2 ,timeNumberUp2));
                 //GameObject.Find("zeroTo").GetComponent<GeneralBarDisgusting>().StartC(amountNumberUp2, timeNumberUp2);
-                GameObject.Find("zeroTo").GetComponent<GeneralBarDisgusting>().run2(amountNumberUp2, timeNumberUp2);
+                GameObject.Find("zeroTo").GetComponent<GeneralBarDisgusting>().run2();
                 
                 j = true;
             }

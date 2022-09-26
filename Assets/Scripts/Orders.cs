@@ -45,8 +45,8 @@ public class Orders : MonoBehaviour
         
         if (Input.GetKeyDown(KeyCode.P) && CanOrder)
         {
-            Instantiate(Meal[IN], transform.position, Quaternion.identity);
             StartCoroutine(CanWithdrawal());
+            Instantiate(Meal[IN], transform.position, Quaternion.identity);
             FindObjectOfType<PlayerController>().Mealqueue.Dequeue();
         }
     }
