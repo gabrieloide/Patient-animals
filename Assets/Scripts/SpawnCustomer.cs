@@ -18,7 +18,6 @@ public class SpawnCustomer : MonoBehaviour
         tableFree = true;
         allTablesOcuped = false;
     }
-
     void Update()
     {
         for (int i=0; i<=9 ; i++)
@@ -32,7 +31,6 @@ public class SpawnCustomer : MonoBehaviour
                 ocupedTables[i] = false;
             }
         }
-
         if (ocupedTables[0] && ocupedTables[1] && ocupedTables[2] && ocupedTables[3] && ocupedTables[4] && ocupedTables[5] && ocupedTables[6] && ocupedTables[7] && ocupedTables[8] && ocupedTables[9])
         {
             Debug.Log("todas ocupadas");
@@ -48,12 +46,10 @@ public class SpawnCustomer : MonoBehaviour
             tableFree = false;
             StartCoroutine(Asd());
         }
-
     }
-
     IEnumerator Asd()
     {
-        Instantiate(customers[UnityEngine.Random.Range(0, 3)], new Vector2(0, 4), Quaternion.identity);
+        Instantiate(customers[UnityEngine.Random.Range(0, 4)], new Vector2(0, 3.3f), Quaternion.identity);
         yield return new WaitForSeconds(timeToSpawn);
         tableFree = true;
         

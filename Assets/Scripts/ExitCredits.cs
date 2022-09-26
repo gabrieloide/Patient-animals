@@ -5,12 +5,21 @@ using UnityEngine.SceneManagement;
 
 public class ExitCredits : MonoBehaviour
 {
-    public float i;
-    void Update()
+    Animator animator;
+    public float TimeToTransition;
+    private void Awake()
     {
-        if (Input.anyKeyDown)
-        {
-            SceneManager.LoadScene("MainMenu");
-        }
+        animator = GetComponent<Animator>();
+    }
+    private void Start()
+    {
+            StartCoroutine(ChangeScene(0));  
+    }
+    IEnumerator ChangeScene(int indexScene)
+    {
+        animator.SetTrigger("StartTransition");
+        yield return new WaitForSeconds(TimeToTransition);
+        SceneManager.LoadScene(indexScene);
+
     }
 }

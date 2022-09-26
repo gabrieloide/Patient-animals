@@ -18,7 +18,10 @@ public class CustomerToTable : MonoBehaviour
     public int numberTable;
     public bool[] ocupedTables;
     public bool s;
+    bool CanTakeOrder;
     public int orderNumber;
+
+    bool CanPlaySound = true;
 
     bool CanTrade;
     bool withdrawal;
@@ -44,6 +47,26 @@ public class CustomerToTable : MonoBehaviour
 
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.K) && CanTakeOrder)
+        {
+
+            switch (customer)
+            {
+                case customerState.dog:
+                    FindObjectOfType<PlayerController>().Mealqueue.Enqueue(0);
+                    break;
+                case customerState.cat:
+                    FindObjectOfType<PlayerController>().Mealqueue.Enqueue(1);
+                    break;
+                case customerState.pig:
+                    FindObjectOfType<PlayerController>().Mealqueue.Enqueue(2);
+                    break;
+                case customerState.monkey:
+                    FindObjectOfType<PlayerController>().Mealqueue.Enqueue(3);
+                    break;
+            }
+        }
+
         if (Input.GetKeyDown(KeyCode.K) && withdrawal)
         {
             if (customer == customerState.dog && FindObjectOfType<Withdrawal>().orderNumber == 0)
@@ -93,6 +116,26 @@ public class CustomerToTable : MonoBehaviour
         {
             inTable = true;
             animator.SetBool("inTable", inTable);
+            if (CanPlaySound)
+            {
+                switch (customer)
+                {
+                    case customerState.dog:
+                        FindObjectOfType<AudioSFXManager>().Play("Dog");
+                        break;
+                    case customerState.cat:
+                        FindObjectOfType<AudioSFXManager>().Play("Cat");
+                        break;
+                    case customerState.pig:
+                        FindObjectOfType<AudioSFXManager>().Play("Pig");
+                        break;
+                    case customerState.monkey:
+                        FindObjectOfType<AudioSFXManager>().Play("Monkey");
+                        break;
+                }
+                CanPlaySound = false;
+            }
+
         }
     }
     public void checkNumberTable()
@@ -144,21 +187,8 @@ public class CustomerToTable : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            switch (customer)   
-            {
-                case customerState.dog:
-                    FindObjectOfType<PlayerController>().Mealqueue.Enqueue(0);
-                    break;
-                case customerState.cat:
-                    FindObjectOfType<PlayerController>().Mealqueue.Enqueue(1);
-                    break;
-                case customerState.pig:
-                    FindObjectOfType<PlayerController>().Mealqueue.Enqueue(2); 
-                    break;
-                case customerState.monkey:
-                    FindObjectOfType<PlayerController>().Mealqueue.Enqueue(3);
-                    break;
-            }
+            CanTakeOrder = true;
+
         }
         if (collision.gameObject.CompareTag("Food"))
         {
@@ -167,6 +197,10 @@ public class CustomerToTable : MonoBehaviour
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            CanTakeOrder = false;
+        }
         if (collision.gameObject.CompareTag("Food"))
         {
             withdrawal = false;

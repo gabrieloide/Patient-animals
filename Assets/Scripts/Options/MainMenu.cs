@@ -5,14 +5,20 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
+    public float transitionTime;
+    Animator animator;
+    private void Awake()
+    {
+        animator = GetComponentInChildren<Animator>();
+    }
     public void PlayGame()
     {
-        SceneManager.LoadScene("SampleScene");
+        StartCoroutine(SceneLoad(1));
     }
 
     public void OpenCredits()
     {
-        SceneManager.LoadScene("Credits");
+        StartCoroutine(SceneLoad(2));
     }
 
     public void Exit()
@@ -22,6 +28,16 @@ public class MainMenu : MonoBehaviour
 
     public void BackToMainMenu()
     {
-        SceneManager.LoadScene("MainMenu");
+        StartCoroutine(SceneLoad(0));
+    }
+    public void PlaySoundButton()
+    {
+        FindObjectOfType<AudioSFXManager>().Play("ButtonSound");
+    }
+    public IEnumerator SceneLoad(int sceneIndex)
+    {
+        animator.SetTrigger("StartTransition");
+        yield return new WaitForSeconds(transitionTime);
+        SceneManager.LoadScene(sceneIndex);
     }
 }

@@ -7,6 +7,11 @@ public class CustomerGoingOut : MonoBehaviour
     public Transform target;
     public float speed;
     public bool pajuera;
+    Animator animator;
+    private void Awake()
+    {
+        animator = GetComponent<Animator>();
+    }
 
     void Start()
     {
@@ -19,6 +24,7 @@ public class CustomerGoingOut : MonoBehaviour
         if (gameObject.GetComponent<CustomerBotheting>().j)
         {
             pajuera = true;
+            animator.SetBool("Out", pajuera);
         }
         //if (gameObject.GetComponent<CustomerToTable>().)
 
