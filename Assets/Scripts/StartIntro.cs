@@ -20,30 +20,32 @@ public class StartIntro : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (intro)
         {
-            if (i == 0)
+            if (Input.GetKeyDown(KeyCode.Space))
             {
-                textMessage[0].SetActive(false);
-                textMessage[1].SetActive(true);
-                i++;
+                if (i == 0)
+                {
+                    textMessage[0].SetActive(false);
+                    textMessage[1].SetActive(true);
+                    i++;
+                }
+                else if (i == 1)
+                {
+                    textMessage[1].SetActive(false);
+                    textMessage[2].SetActive(true);
+                    i++;
+                }
+                else if (i == 2)
+                {
+                    intro = false;
+                    Time.timeScale = 1;
+                    carpetIntro.SetActive(false);
+                    panelBackground.SetActive(false);
+                    textZeroTo.SetActive(true);
+                    textHour.SetActive(true);
+                }
             }
-            else if (i == 1)
-            {
-                textMessage[1].SetActive(false);
-                textMessage[2].SetActive(true);
-                i++;
-            }
-            else if (i == 2)
-            {
-                intro = false;
-                Time.timeScale = 1;
-                carpetIntro.SetActive(false);
-                panelBackground.SetActive(false);
-                textZeroTo.SetActive(true);
-                textHour.SetActive(true);
-            }
-
         }
     }
 

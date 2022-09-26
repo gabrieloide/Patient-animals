@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class HourTiming : MonoBehaviour
 {
@@ -10,19 +11,29 @@ public class HourTiming : MonoBehaviour
     public string ampm;
     public int hour;
     public int minuts;
+    public bool win;
 
+    public GameObject hourInGame;
+    public GameObject panelBackground;
     public GameObject panelWin;
     public GameObject textZeroTo;
 
     void Start()
     {
-        text = gameObject.GetComponent<Text>();
+        text = hourInGame.GetComponent<Text>();
         hour = 10;
+        win = false;
     }
 
     void Update()
     {
         time += Time.deltaTime;
+
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            Time.timeScale = 20;
+        }
+
 
         if (minuts < 10)
         {
@@ -63,14 +74,24 @@ public class HourTiming : MonoBehaviour
         {
             YouWin();
         }
+
+        if (win)
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                SceneManager.LoadScene("Credits");
+            }
+        }
     }
 
     public void YouWin()
     {
+        win = true;
         Time.timeScale = 0;
         AudioMusicManager.instance.StopMusic();
+        panelBackground.SetActive(true);
         panelWin.SetActive(true);
         textZeroTo.SetActive(false);
-        gameObject.SetActive(false);
+        hourInGame.SetActive(false);
     }
 }

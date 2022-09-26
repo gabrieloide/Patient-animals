@@ -73,7 +73,7 @@ public class GeneralBarDisgusting : MonoBehaviour
         if (number >= 100)
         {
             AudioMusicManager.instance.StopMusic();
-            //GameOver();
+            GameOver();
         }
     }
 

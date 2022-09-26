@@ -11,6 +11,7 @@ public class MenuPause : MonoBehaviour
     public GameObject textZeroTo;
     public bool IsPaused;
     public bool inIntro;
+    public bool inWin;
 
     private void Start()
     {
@@ -20,14 +21,15 @@ public class MenuPause : MonoBehaviour
     private void Update()
     {
         inIntro = gameObject.GetComponent<StartIntro>().intro;
+        inWin = gameObject.GetComponent<HourTiming>().win;
         if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.P))
         {
-            if (IsPaused && !inIntro)
+            if (IsPaused && !inIntro && !inWin)
             {
                 Resume();
                 textZeroTo.SetActive(true);
             }
-            else if(!IsPaused && !inIntro)
+            else if(!IsPaused && !inIntro && !inWin)
             {
                 Pause();
                 textZeroTo.SetActive(false);
