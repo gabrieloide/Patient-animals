@@ -12,7 +12,11 @@ public class Withdrawal : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.K))
         {
-            transform.parent =FindObjectOfType<PlayerController>().gameObject.transform;
+            transform.parent = FindObjectOfType<PlayerController>().gameObject.transform;
+        }
+        if (Input.GetKeyDown(KeyCode.K) && canThrowAway)
+        {
+            Destroy(gameObject);
         }
         if (Input.GetKeyDown(KeyCode.K) && canThrowAway)
         {
@@ -29,6 +33,10 @@ public class Withdrawal : MonoBehaviour
         {
             canThrowAway = true;
         }
+        if (collision.gameObject.CompareTag("Customer"))
+        {
+            canThrowAway = true;
+        }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
@@ -37,6 +45,10 @@ public class Withdrawal : MonoBehaviour
             canWitdhdrawal = false;
         }
         if (collision.gameObject.CompareTag("Basura"))
+        {
+            canThrowAway = false;
+        }
+        if (collision.gameObject.CompareTag("Customer"))
         {
             canThrowAway = false;
         }

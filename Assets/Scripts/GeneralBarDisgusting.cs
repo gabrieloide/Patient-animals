@@ -5,9 +5,11 @@ using UnityEngine.UI;
 
 public class GeneralBarDisgusting : MonoBehaviour
 {
+    public GameObject panelGameOver;
+    public GameObject panelBackground;
+    public GameObject textHour;
     public Text text;
     public int number;
-    public GameObject panelGameOver;
 
     public int amountNumberUp1;
     public float timeNumberUp1;
@@ -26,12 +28,6 @@ public class GeneralBarDisgusting : MonoBehaviour
     void Update()
     {
         text.text = number + "/100";
-
-        if (number>=100)
-        {
-            //text.text = "Game Over";
-            GameOver();
-        }
 
         if (timeRun1)
         {
@@ -61,25 +57,44 @@ public class GeneralBarDisgusting : MonoBehaviour
                 timeRun2 = false;
             }
         }
+
+        if (number >= 25 && number < 50 && AudioMusicManager.instance.musicOnPlay[0])
+        {
+            AudioMusicManager.instance.PlayMusic2();
+        }
+        else if (number >= 50 && number < 75 && AudioMusicManager.instance.musicOnPlay[1])
+        {
+            AudioMusicManager.instance.PlayMusic3();
+        }
+        else if (number >= 75 && number < 100 && AudioMusicManager.instance.musicOnPlay[2])
+        {
+            AudioMusicManager.instance.PlayMusic4();
+        }
+        
+        if (number >= 100)
+        {
+            AudioMusicManager.instance.StopMusic();
+            GameOver();
+        }
     }
 
     public void GameOver()
     {
         panelGameOver.SetActive(true);
+        panelBackground.SetActive(true);
+        textHour.SetActive(false);
         gameObject.SetActive(false);
         Time.timeScale = 0;
     }
 
-    public void run1(int a, float b)
+    public void run1()
     {
-        amountNumberUp1 = a;
-        timeNumberUp1 = b;
+        amountNumberUp1 = 10;
         timeRun1 = true;
     }
-    public void run2(int a, float b)
+    public void run2()
     {
-        amountNumberUp2 = a;
-        timeNumberUp2 = b;
+        amountNumberUp2 = 15;
         timeRun2 = true;
     }
 

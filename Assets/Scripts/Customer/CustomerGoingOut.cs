@@ -28,6 +28,10 @@ public class CustomerGoingOut : MonoBehaviour
         }
         //if (gameObject.GetComponent<CustomerToTable>().)
 
+        if (gameObject.GetComponent<CustomerToTable>().entregado)
+        {
+            pajuera = true;
+        }
         if (pajuera == true)
         {
             Vector2 direction = target.position - transform.position;

@@ -19,7 +19,7 @@ public class DoorOpenClose : MonoBehaviour
     {
         openDoor.SetActive(true);
         closeDoor.SetActive(false);
-        yield return new WaitForSeconds(0.75f);
+        yield return new WaitForSeconds(0.5f);
         openDoor.SetActive(false);
         closeDoor.SetActive(true);
     }

@@ -20,13 +20,14 @@ public class CustomerToTable : MonoBehaviour
     public bool s;
     bool CanTakeOrder;
     public int orderNumber;
+    public bool entregado = false;
 
     bool CanPlaySound = true;
 
     bool CanTrade;
     bool withdrawal;
 
-    
+
 
     public Transform[] tables;
     Animator animator;
@@ -47,7 +48,7 @@ public class CustomerToTable : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.K) && CanTakeOrder)
+        if (Input.GetKeyDown(KeyCode.J) && CanTakeOrder)
         {
 
             switch (customer)
@@ -72,6 +73,7 @@ public class CustomerToTable : MonoBehaviour
             if (customer == customerState.dog && FindObjectOfType<Withdrawal>().orderNumber == 0)
             {
                 Debug.Log("Comida de perro");
+                entregado = true;
             }
             else
             {
@@ -80,6 +82,7 @@ public class CustomerToTable : MonoBehaviour
             if (customer == customerState.cat && FindObjectOfType<Withdrawal>().orderNumber == 1)
             {
                 Debug.Log("Comida de gato");
+                entregado = true;
             }
             else
             {
@@ -88,6 +91,7 @@ public class CustomerToTable : MonoBehaviour
             if (customer == customerState.pig && FindObjectOfType<Withdrawal>().orderNumber == 2)
             {
                 Debug.Log("Comida de cerdo");
+                entregado = true;
             }
             else
             {
@@ -96,6 +100,7 @@ public class CustomerToTable : MonoBehaviour
             if (customer == customerState.monkey && FindObjectOfType<Withdrawal>().orderNumber == 3)
             {
                 Debug.Log("Comida de mono");
+                entregado = true;
             }
             else
             {

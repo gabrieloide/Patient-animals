@@ -33,7 +33,7 @@ public class VolumeSettings : MonoBehaviour
 
     public void ChangeSFX(float v)
     {
-        mixer.SetFloat("VolVolFx", v);
+        mixer.SetFloat("VolSFX", v);
         PlayerPrefs.SetFloat("SFX", sfx.value);
     }
 
