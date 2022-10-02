@@ -10,17 +10,32 @@ public class StartIntro : MonoBehaviour
     public GameObject textHour;
     public GameObject[] textMessage;
     public bool intro;
+    private bool pressSpace;
     private int i=0;
+    private float cont;
 
     void Start()
     {
         intro = true;
-        Time.timeScale = 0;
+        pressSpace = false;
+        cont = 0;
     }
 
     void Update()
     {
         if (intro)
+        {
+            cont += Time.deltaTime;
+        }
+        
+        if(cont >= 1)
+        {
+            Time.timeScale = 0;
+            cont = 0;
+            pressSpace = true;
+        }
+
+        if (intro && pressSpace == true)
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
@@ -49,8 +64,5 @@ public class StartIntro : MonoBehaviour
         }
     }
 
-    public void asd()
-    {
-        
-    }
+    
 }

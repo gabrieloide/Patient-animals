@@ -5,10 +5,11 @@ using UnityEngine.UI;
 
 public class GeneralBarDisgusting : MonoBehaviour
 {
+    public GameObject panelGameOver;
+    public GameObject panelBackground;
+    public GameObject textHour;
     public Text text;
     public int number;
-    public GameObject panelGameOver;
-    public GameObject textHour;
 
     public int amountNumberUp1;
     public float timeNumberUp1;
@@ -80,6 +81,7 @@ public class GeneralBarDisgusting : MonoBehaviour
     public void GameOver()
     {
         panelGameOver.SetActive(true);
+        panelBackground.SetActive(true);
         textHour.SetActive(false);
         gameObject.SetActive(false);
         Time.timeScale = 0;

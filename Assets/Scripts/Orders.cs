@@ -43,7 +43,7 @@ public class Orders : MonoBehaviour
             Debug.Log("ff");
         }
         
-        if (Input.GetKeyDown(KeyCode.P) && CanOrder)
+        if (Input.GetKeyDown(KeyCode.J) && CanOrder)
         {
             StartCoroutine(CanWithdrawal());
             Instantiate(Meal[IN], transform.position, Quaternion.identity);
