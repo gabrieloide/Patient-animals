@@ -41,7 +41,7 @@ public class SpawnCustomer : MonoBehaviour
             allTablesOcuped = false;
         }
 
-        if (tableFree == true && allTablesOcuped == false)
+        if (tableFree == true)
         {
             tableFree = false;
             StartCoroutine(Spawn ());
@@ -51,8 +51,10 @@ public class SpawnCustomer : MonoBehaviour
     IEnumerator Spawn()
     {
         yield return new WaitForSeconds(timeToSpawn);
-        Instantiate(customers[UnityEngine.Random.Range(0, 3)], new Vector2(0, 3.3f), Quaternion.identity);
+        if (!allTablesOcuped)
+        {
+            Instantiate(customers[UnityEngine.Random.Range(0, 3)], new Vector2(0, 3.3f), Quaternion.identity);
+        }
         tableFree = true;
-        
     }
 }

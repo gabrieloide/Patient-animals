@@ -34,11 +34,9 @@ Transform:
   m_LocalPosition: {x: -9.562151, y: -3.301706, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 752880057989956836}
   - {fileID: 8469527451346604510}
   - {fileID: 8617519736681120923}
   - {fileID: 8994839995264432287}
-  - {fileID: 5755448422393781451}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -180,6 +178,8 @@ MonoBehaviour:
   s: 0
   orderNumber: 0
   entregado: 0
+  routeCount: 0
+  nextRoute: {fileID: 0}
   tables:
   - {fileID: 0}
   - {fileID: 0}
@@ -204,12 +204,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   states:
-  - {fileID: 752880057989956839}
+  - {fileID: 0}
   - {fileID: 8469527451346604507}
   - {fileID: 8617519736681120924}
   - {fileID: 8994839995264432280}
-  - {fileID: 81417184937637851}
-  timeStatus: 7
+  - {fileID: 0}
+  timeStatus: 20
   si: 0
   k: 1
   j: 0
@@ -227,6 +227,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   speed: 3
+  pajuera: 0
 --- !u!1 &8469527451346604507
 GameObject:
   m_ObjectHideFlags: 0
@@ -257,7 +258,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6263876068092164909}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &8469527451346604509
 SpriteRenderer:
@@ -359,7 +360,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6263876068092164909}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &8617519736681120922
 SpriteRenderer:
@@ -461,7 +462,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6263876068092164909}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &8994839995264432286
 SpriteRenderer:

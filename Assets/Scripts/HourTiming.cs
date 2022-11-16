@@ -31,7 +31,7 @@ public class HourTiming : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Z))
         {
-            Time.timeScale = 20;
+            Time.timeScale = 2;
         }
 
 

@@ -467,6 +467,8 @@ MonoBehaviour:
   s: 0
   orderNumber: 0
   entregado: 0
+  routeCount: 0
+  nextRoute: {fileID: 0}
   tables:
   - {fileID: 0}
   - {fileID: 0}
@@ -496,7 +498,7 @@ MonoBehaviour:
   - {fileID: 2267169132557862080}
   - {fileID: 1461481393586005554}
   - {fileID: 5225086555800498634}
-  timeStatus: 7
+  timeStatus: 20
   si: 0
   k: 1
   j: 0
@@ -514,6 +516,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   speed: 3
+  pajuera: 0
 --- !u!95 &4863416117837629629
 Animator:
   serializedVersion: 3

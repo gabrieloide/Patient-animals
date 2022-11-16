@@ -8,6 +8,10 @@ public class CustomerGoingOut : MonoBehaviour
     public float speed;
     public bool pajuera;
     Animator animator;
+
+    public int routeCount;
+    public Transform nextRoute;
+
     private void Awake()
     {
         animator = GetComponent<Animator>();
@@ -19,23 +23,31 @@ public class CustomerGoingOut : MonoBehaviour
         pajuera = false;
     }
 
+    private void FixedUpdate()
+    {
+        if (pajuera)
+        {
+            nextRoute = gameObject.GetComponent<CustomerToTable>().target.GetComponent<Routes>().route[routeCount / 2];
+            Vector2 direction = nextRoute.position;
+            transform.position = Vector2.MoveTowards(transform.position, direction, speed * Time.deltaTime);
+            if (Vector2.Distance(nextRoute.position, transform.position) == 0)
+            {
+                routeCount--;
+            }
+        }
+    }
+
     void Update()
     {
         if (gameObject.GetComponent<CustomerBotheting>().j)
         {
             pajuera = true;
-            animator.SetBool("Out", pajuera);
         }
         //if (gameObject.GetComponent<CustomerToTable>().)
 
         if (gameObject.GetComponent<CustomerToTable>().entregado)
         {
             pajuera = true;
-        }
-        if (pajuera == true)
-        {
-            Vector2 direction = target.position - transform.position;
-            transform.Translate(direction.normalized * speed * Time.deltaTime);
         }
     }
 

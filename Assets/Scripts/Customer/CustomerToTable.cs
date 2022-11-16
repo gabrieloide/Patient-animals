@@ -22,12 +22,13 @@ public class CustomerToTable : MonoBehaviour
     public int orderNumber;
     public bool entregado = false;
 
+    public int routeCount;
+    public Transform nextRoute;
+
     bool CanPlaySound = true;
 
     bool CanTrade;
     bool withdrawal;
-
-
 
     public Transform[] tables;
     Animator animator;
@@ -43,8 +44,25 @@ public class CustomerToTable : MonoBehaviour
         s = true;
         checkNumberTable();
         inTable = false;
+
+        nextRoute = target.GetComponent<Routes>().route[0];
     }
 
+    private void FixedUpdate()
+    {
+        //move to table
+        nextRoute = target.GetComponent<Routes>().route[0 + routeCount / 2];
+        if (!inTable)
+        {
+            Vector2 direction = nextRoute.position;
+            transform.position = Vector2.MoveTowards(transform.position, direction, speed * Time.deltaTime);
+        }
+        if (!inTable && Vector2.Distance(nextRoute.position, transform.position) == 0)
+        {
+            routeCount++;
+            gameObject.GetComponent<CustomerGoingOut>().routeCount = routeCount;
+        }
+    }
 
     void Update()
     {
@@ -108,16 +126,10 @@ public class CustomerToTable : MonoBehaviour
             }
             Debug.Log("Retirando");
         }
-        //move to table
-        if (inTable == false)
-        {
-            Vector2 direction = target.position - transform.position;
-            transform.Translate(direction.normalized * speed * Time.deltaTime);
-            animator.SetBool("inTable", inTable);
-        }
+        
 
         //stop move
-        if (transform.position.x - target.position.x <= 0.01 && transform.position.y - target.position.y <= 0.01)
+        if (Vector2.Distance(transform.position, target.position) == 0)
         {
             inTable = true;
             animator.SetBool("inTable", inTable);

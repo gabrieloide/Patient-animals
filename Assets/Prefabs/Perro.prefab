@@ -670,6 +670,8 @@ MonoBehaviour:
   s: 0
   orderNumber: 0
   entregado: 0
+  routeCount: 0
+  nextRoute: {fileID: 0}
   tables:
   - {fileID: 0}
   - {fileID: 0}
@@ -699,7 +701,7 @@ MonoBehaviour:
   - {fileID: 3547303760119042137}
   - {fileID: 1356136290619461767}
   - {fileID: 7763175620470092118}
-  timeStatus: 7
+  timeStatus: 20
   si: 0
   k: 1
   j: 0
@@ -717,3 +719,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   speed: 3
+  pajuera: 0

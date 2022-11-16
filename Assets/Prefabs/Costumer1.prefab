@@ -282,6 +282,8 @@ MonoBehaviour:
   s: 0
   orderNumber: 0
   entregado: 0
+  routeCount: 0
+  nextRoute: {fileID: 0}
   tables:
   - {fileID: 0}
   - {fileID: 0}
@@ -311,7 +313,7 @@ MonoBehaviour:
   - {fileID: 6079316661848665932}
   - {fileID: 3650725373146879467}
   - {fileID: 3020653903310885630}
-  timeStatus: 7
+  timeStatus: 20
   si: 0
   k: 1
   j: 0
@@ -329,6 +331,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   speed: 3
+  pajuera: 0
 --- !u!1 &3020653903310885630
 GameObject:
   m_ObjectHideFlags: 0
