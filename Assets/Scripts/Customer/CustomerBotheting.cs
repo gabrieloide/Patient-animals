@@ -35,7 +35,7 @@ public class CustomerBotheting : MonoBehaviour
 
     IEnumerator ShowStatus()
     {      
-        for (int i=0; i<=4 ; i++)
+        for (int i=0; i<= 4; i++)
         {
             states[i].SetActive(true);
             if (i == 2)

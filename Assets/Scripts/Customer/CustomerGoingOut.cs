@@ -6,7 +6,7 @@ public class CustomerGoingOut : MonoBehaviour
 {
     public Transform target;
     public float speed;
-    public bool pajuera;
+    public bool Out;
     Animator animator;
     private void Awake()
     {
@@ -16,24 +16,25 @@ public class CustomerGoingOut : MonoBehaviour
     void Start()
     {
         target = GameObject.FindWithTag("Door").transform;
-        pajuera = false;
+        Out = false;
     }
 
     void Update()
     {
         if (gameObject.GetComponent<CustomerBotheting>().j)
         {
-            pajuera = true;
-            animator.SetBool("Out", pajuera);
+            Out = true;
+            animator.SetBool("Out", Out);
         }
         //if (gameObject.GetComponent<CustomerToTable>().)
 
         if (gameObject.GetComponent<CustomerToTable>().entregado)
         {
-            pajuera = true;
+            Out = true;
         }
-        if (pajuera == true)
+        if (Out)
         {
+          //  FindObjectOfType<CustomerToTable>().CustomerState.sprite = FindObjectOfType<CustomerToTable>().HearthSignSprite;
             Vector2 direction = target.position - transform.position;
             transform.Translate(direction.normalized * speed * Time.deltaTime);
         }
@@ -41,7 +42,7 @@ public class CustomerGoingOut : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Door") && pajuera)
+        if (collision.gameObject.CompareTag("Door") && Out)
         {
             Destroy(gameObject);
         }

@@ -22,12 +22,14 @@ public class CustomerToTable : MonoBehaviour
     public int orderNumber;
     public bool entregado = false;
 
+    public SpriteRenderer CustomerState;
+    public Sprite ExclamationSignSprite;
+    public Sprite HearthSignSprite;
+
     bool CanPlaySound = true;
 
     bool CanTrade;
     bool withdrawal;
-
-
 
     public Transform[] tables;
     Animator animator;
@@ -38,6 +40,7 @@ public class CustomerToTable : MonoBehaviour
 
     void Start()
     {
+        CustomerState.sprite = ExclamationSignSprite;
         ocupedTables = new bool[10];
 
         s = true;
@@ -50,7 +53,6 @@ public class CustomerToTable : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.J) && CanTakeOrder)
         {
-
             switch (customer)
             {
                 case customerState.dog:
@@ -68,45 +70,36 @@ public class CustomerToTable : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.K) && withdrawal)
+        if (Input.GetKeyDown(KeyCode.K))
         {
-            if (customer == customerState.dog && FindObjectOfType<Withdrawal>().orderNumber == 0)
+            if (withdrawal)
             {
-                Debug.Log("Comida de perro");
-                entregado = true;
+                if (customer == customerState.dog && FindObjectOfType<Withdrawal>().orderNumber == 0)
+                {
+                    CustomerState.sprite = HearthSignSprite;
+                    entregado = true;
+                }
+                if (customer == customerState.cat && FindObjectOfType<Withdrawal>().orderNumber == 1)
+                {
+                    CustomerState.sprite = HearthSignSprite;
+                    entregado = true;
+                }
+                if (customer == customerState.pig && FindObjectOfType<Withdrawal>().orderNumber == 2)
+                {
+                    CustomerState.sprite = HearthSignSprite;
+                    entregado = true;
+                }
+                if (customer == customerState.monkey && FindObjectOfType<Withdrawal>().orderNumber == 3)
+                {
+                    CustomerState.sprite = HearthSignSprite;
+                    entregado = true;
+                }
             }
             else
             {
                 CanTrade = false;
             }
-            if (customer == customerState.cat && FindObjectOfType<Withdrawal>().orderNumber == 1)
-            {
-                Debug.Log("Comida de gato");
-                entregado = true;
-            }
-            else
-            {
-                CanTrade = false;
-            }
-            if (customer == customerState.pig && FindObjectOfType<Withdrawal>().orderNumber == 2)
-            {
-                Debug.Log("Comida de cerdo");
-                entregado = true;
-            }
-            else
-            {
-                CanTrade = false;
-            }
-            if (customer == customerState.monkey && FindObjectOfType<Withdrawal>().orderNumber == 3)
-            {
-                Debug.Log("Comida de mono");
-                entregado = true;
-            }
-            else
-            {
-                CanTrade = false;
-            }
-            Debug.Log("Retirando");
+
         }
         //move to table
         if (inTable == false)
@@ -121,6 +114,7 @@ public class CustomerToTable : MonoBehaviour
         {
             inTable = true;
             animator.SetBool("inTable", inTable);
+            CustomerState.gameObject.SetActive(true);
             if (CanPlaySound)
             {
                 switch (customer)
@@ -170,7 +164,12 @@ public class CustomerToTable : MonoBehaviour
         }
         //select target
         //se inicializa s a true, Hacer un for que recorra de 0 a n, en el cuerpo se coloca s &= ocupedtables[i]
-        if (ocupedTables[0] && ocupedTables[1] && ocupedTables[2] && ocupedTables[3] && ocupedTables[4] && ocupedTables[5] && ocupedTables[6] && ocupedTables[7] && ocupedTables[8] && ocupedTables[9])
+        bool L = true;
+        for (int i = 1; i < ocupedTables.Length; i++)
+        {
+            L &= ocupedTables[i];
+        }
+        if (L)
         {
             s = false;
         }

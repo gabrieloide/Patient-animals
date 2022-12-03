@@ -31,28 +31,41 @@ public class SpawnCustomer : MonoBehaviour
                 ocupedTables[i] = false;
             }
         }
-        if (ocupedTables[0] && ocupedTables[1] && ocupedTables[2] && ocupedTables[3] && ocupedTables[4] && ocupedTables[5] && ocupedTables[6] && ocupedTables[7] && ocupedTables[8] && ocupedTables[9])
+        bool L = true;
+        for (int i = 0; i < ocupedTables.Length; i++)
         {
-            Debug.Log("todas ocupadas");
+            L &= ocupedTables[i];
+        }
+        if (L)
+        {
             allTablesOcuped = true;
         }
         else
         {
             allTablesOcuped = false;
         }
-
-        if (tableFree == true && allTablesOcuped == false)
+        if (tableFree)
         {
             tableFree = false;
             StartCoroutine(Spawn ());
         }
     }
-
     IEnumerator Spawn()
     {
         yield return new WaitForSeconds(timeToSpawn);
-        Instantiate(customers[UnityEngine.Random.Range(0, 3)], new Vector2(0, 3.3f), Quaternion.identity);
+        if (!allTablesOcuped)
+        {
+            Instantiate(customers[Random.Range(0, 4)], new Vector2(0, 3.3f), Quaternion.identity);
+        }
         tableFree = true;
+    }
+}
+public class Customers
+{
+
+
+    public Customers(GameObject _customer, int _Meal)
+    {
         
     }
 }

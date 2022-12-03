@@ -24,8 +24,6 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-
-
         walking = false;
        if (Mathf.Abs(Input.GetAxisRaw(horizontal))> 0.5f || Mathf.Abs(Input.GetAxisRaw(vertical)) > 0.5f)
        {
